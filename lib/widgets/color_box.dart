@@ -5,12 +5,14 @@ class ColorBox extends StatelessWidget {
   final int index;
   final BoxController controller;
   final VoidCallback onChange;
+  final double size;
 
   const ColorBox({
     super.key,
     required this.index,
     required this.controller,
     required this.onChange,
+    required this.size,
   });
 
   @override
@@ -22,8 +24,8 @@ class ColorBox extends StatelessWidget {
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 300),
         margin: const EdgeInsets.all(4),
-        width: 40,
-        height: 40,
+        width: size-8,
+        height: size-8,
         decoration: BoxDecoration(
           color: controller.boxColors[index],
           borderRadius: BorderRadius.circular(6),

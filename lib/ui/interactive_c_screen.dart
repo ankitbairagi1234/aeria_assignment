@@ -75,16 +75,17 @@ class _InteractiveCScreenState extends State<InteractiveCScreen> {
     final total = _boxController.boxColors.length;
     if (total == 0) return [];
 
-    int topCount = (total / 4).ceil().clamp(1, total);         // top row
+    int topCount = (total / 3).ceil().clamp(1, total);         // top row
     int bottomCount = topCount;                                // bottom row
     int sideCount = total - topCount - bottomCount;            // vertical side
+    var boxSize = (MediaQuery.of(context).size.width-32)/topCount;
 
     List<Widget> top = List.generate(topCount,
-            (i) => ColorBox(index: i, controller: _boxController, onChange: _refresh));
+            (i) => ColorBox(index: i, controller: _boxController, onChange: _refresh,size: boxSize,));
     List<Widget> side = List.generate(sideCount,
-            (i) => ColorBox(index: i + topCount, controller: _boxController, onChange: _refresh));
+            (i) => ColorBox(index: i + topCount, controller: _boxController, onChange: _refresh,size: boxSize,));
     List<Widget> bottom = List.generate(bottomCount,
-            (i) => ColorBox(index: i + topCount + sideCount, controller: _boxController, onChange: _refresh));
+            (i) => ColorBox(index: i + topCount + sideCount, controller: _boxController, onChange: _refresh,size: boxSize,));
 
     return [
       SingleChildScrollView(scrollDirection: Axis.horizontal, child: Row(children: top)),
